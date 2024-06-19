@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ExportImport.Models.Product>
+@using (Html.BeginForm("ImportFromExcel", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label>Please Upload Excel File </label>
+    <input type="file" name="file" />
+    <input type="submit" value="Upload" />
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Products</title>
+</head>
+<body>
+    <h1>Product List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br/>
+    <a href="/Product/ExportToExcel">Export to Excel</a>
+    <a href="/Product/ExportToPdf">Export to PDF</a>
+</body>
+</html>
